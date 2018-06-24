@@ -2,11 +2,10 @@ package redes.roteamento.util;
 
 /*
 *	Classe SendPackage padroniza o mecanismo de envio de pacotes.
-*	essa classe herda de pacote
+*	essa classe herda de package
  */
 import java.io.*;
 import java.net.*;
-import java.util.*;
 
 public class SendPackage extends Package {
 

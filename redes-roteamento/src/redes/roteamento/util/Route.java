@@ -1,8 +1,5 @@
 package redes.roteamento.util;
 
-/*
-*	Classe representante de uma rota
- */
 public class Route {
 
     public String network;

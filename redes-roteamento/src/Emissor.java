@@ -30,14 +30,15 @@ public class Emissor extends SendPackage {
             System.out.println("Informe a mensagem:");
 
             message = input.nextLine();
-
+            
             preparing();
             
             //preparando a mensagem pra ser enviado
             sendMessage = ttl+";"+address+";"+destiny+";"+message;
-            
+            //mandando a mensagem
             forwarding(sendMessage.getBytes());
-
+            
+            message = new String();
             socket.close();
             System.out.println("Socket cliente fechado!");
         }

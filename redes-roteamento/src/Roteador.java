@@ -5,8 +5,6 @@
 import java.io.*;
 import java.net.*;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import redes.roteamento.util.Route;
 import redes.roteamento.util.SendPackage;
 import redes.roteamento.util.Table;
@@ -43,7 +41,7 @@ class Roteador extends SendPackage {
             if (ttl == 0) {
                 System.out.println("> Time to Live exceeded in Transit, dropping packet for " + destiny);
             } else {
-                Route route = table.route(change(destiny));
+                Route route = table.route(destiny);
 
                 String ttlSend = String.valueOf(ttl);
 
@@ -104,6 +102,7 @@ class Roteador extends SendPackage {
      */
     static void receiving() throws IOException {
         String recMessage;
+        message = new String();
         socket.receive(receivePacket);
         //System.out.print("Datagrama UDP messagem  recebido...");
         
@@ -126,8 +125,7 @@ class Roteador extends SendPackage {
      */
     static void input(String[] array) {
         if (array.length == 0) {
-            System.out
-                    .println("Obrigatorio, argumento\n exemplo: (ex) java UDPServer.java 12345");
+            System.out.println("É necessário ter argumento");
             System.exit(0);
         }
 
