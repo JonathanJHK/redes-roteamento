@@ -15,14 +15,14 @@ public class Table {
     public int index = 0;
 
     /*
-	*	Método construtor
+     *	Método construtor
      */
     public Table(int size) {
         route = new Route[size];
     }
 
     /*
-	*	Método add, adiciona uma nova rota na tabela
+     *	Método add, adiciona uma nova rota na tabela
      */
     public void add(String[] array) {
         if (array.length == 1) {
@@ -37,15 +37,13 @@ public class Table {
     }
 
     /*
-	*	Método route, responsavel por decidir o roteamento
+     *	Método route, responsavel por decidir o roteamento
      */
     public Route route(String ip) {
         Route choice = new Route("default");
 
         for (Route value : route) {
-            //System.out.println(networkCalculation(ip, value.mask) + " ---- " + value.mask);
-            //System.out.println(networkCalculation(value.network, value.mask));
-            //System.out.println(networkCalculation(ip, value.mask) == networkCalculation(value.network, value.mask));
+           
             if (networkCalculation(ip, value.mask).equals(networkCalculation(value.network, value.mask))) {
                 choice = choose(value, choice);
             }
@@ -55,7 +53,7 @@ public class Table {
     }
 
     /*
-	*	Método choose, define a prioridade entre rotas, como destino.
+     *	Método choose, define a prioridade entre rotas, como destino.
      */
     private Route choose(Route value, Route choice) {
         if (choice.network.equals("default")) {

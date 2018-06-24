@@ -12,14 +12,14 @@ public class Route {
     public String intface;
 
     /*
-	*	Método construtor default
+     *	Método construtor default
      */
     public Route(String network) {
         this.network = network;
     }
 
     /*
-	*	Método construtor
+     *	Método construtor
      */
     public Route(String[] array) {
         this.network = array[0];

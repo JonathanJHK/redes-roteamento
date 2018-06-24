@@ -15,6 +15,8 @@ public class Emissor extends SendPackage {
      */
     public static void main(String args[]) throws Exception {
         boolean contin = true;
+        String ttl = "5";
+        String sendMessage;
         Scanner input = new Scanner(System.in);
 
         while (contin) {
@@ -30,15 +32,11 @@ public class Emissor extends SendPackage {
             message = input.nextLine();
 
             preparing();
-
-            forwarding(message.getBytes());
-            forwarding(address.getBytes());
-            forwarding(destiny.getBytes());
-
-            DatagramPacket receivePacket = new DatagramPacket(receiveData,receiveData.length);
-
-            socket.receive(receivePacket);
-            String modifiedSentence = new String(receivePacket.getData());
+            
+            //preparando a mensagem pra ser enviado
+            sendMessage = ttl+";"+address+";"+destiny+";"+message;
+            
+            forwarding(sendMessage.getBytes());
 
             socket.close();
             System.out.println("Socket cliente fechado!");

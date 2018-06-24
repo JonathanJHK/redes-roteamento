@@ -38,16 +38,13 @@ public class SendPackage extends Package {
     }
 
     /*
-	*	Método de reenvio de pacotes
+     *	Método de reenvio de pacotes
      */
     public static void reforwarding(byte[] sendData, int port) throws IOException {
         IPAddress = receivePacket.getAddress();
-        String capitalizedSentence = message.toUpperCase();
+  
+        DatagramPacket sendPacket = new DatagramPacket(sendData,sendData.length, IPAddress, port);
 
-        DatagramPacket sendPacket = new DatagramPacket(sendData,
-                sendData.length, IPAddress, port);
-
-        //System.out.print("Enviando " + capitalizedSentence + "...");
         socket.send(sendPacket);
     }
 }
