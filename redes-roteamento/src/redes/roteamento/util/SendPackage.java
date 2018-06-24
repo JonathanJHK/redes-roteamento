@@ -18,7 +18,7 @@ public class SendPackage extends Package {
     public static InetAddress IPAddress;
 
     /*
-	*	Método de preparação de pacotes
+     *	Método de preparação de pacotes
      */
     public static void preparing() throws Exception {
         inFromUser = new BufferedReader(new InputStreamReader(System.in));
@@ -27,13 +27,13 @@ public class SendPackage extends Package {
     }
 
     /*
-	*	Método de envio de pacotes
+     *	Método de envio de pacotes
      */
     public static void forwarding(byte[] sendData) throws IOException {
-        DatagramPacket sendPacket = new DatagramPacket(sendData,
-                sendData.length, InetAddress.getByName(router), Integer.parseInt(port));
-
+        DatagramPacket sendPacket = new DatagramPacket(sendData,sendData.length, InetAddress.getByName(router), Integer.parseInt(port));
+        
         System.out.println("Enviando pacote UDP para " + router + ":" + port);
+        
         socket.send(sendPacket);
     }
 

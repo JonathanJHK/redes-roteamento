@@ -14,39 +14,36 @@ public class Emissor extends SendPackage {
 	*  Faz a comunicação com o roteador, enviando um pacote	
      */
     public static void main(String args[]) throws Exception {
-        input(args);
-        preparing();
+        boolean contin = true;
+        Scanner input = new Scanner(System.in);
 
-        forwarding(message.getBytes());
-        forwarding(address.getBytes());
-        forwarding(destiny.getBytes());
+        while (contin) {
+            System.out.println("Informe o roteador, a porta, o endereço de origem, o endereço de destino:");
 
-        DatagramPacket receivePacket = new DatagramPacket(receiveData,
-                receiveData.length);
+            router = input.next();
+            port = input.next();
+            address = input.next();
+            destiny = input.next();
+            input.nextLine();
+            System.out.println("Informe a mensagem:");
 
-        socket.receive(receivePacket);
-        String modifiedSentence = new String(receivePacket.getData());
+            message = input.nextLine();
 
-        socket.close();
-        System.out.println("Socket cliente fechado!");
-    }
+            preparing();
 
-    /* 
-	*	Método input, responsavel por trata do recebimento dos dados pelo terminal	
-     */
-    public static void input(String[] array) {
-        if (array.length == 0) {
-            System.out.println("Obrigatorio, argumento\n exemplo: (ex) java UDPClient.java  127.0.0.1  12345  10.0.0.5   1.2.3.4  Hello");
-            System.exit(0);
+            forwarding(message.getBytes());
+            forwarding(address.getBytes());
+            forwarding(destiny.getBytes());
+
+            DatagramPacket receivePacket = new DatagramPacket(receiveData,receiveData.length);
+
+            socket.receive(receivePacket);
+            String modifiedSentence = new String(receivePacket.getData());
+
+            socket.close();
+            System.out.println("Socket cliente fechado!");
         }
-        router = array[0];
-        port = array[1];
-        address = array[2];
-        destiny = array[3];
-        message = "";
-        for (int i = 4; i != array.length; i++) {
-            message += array[i] + " ";
-        }
+
     }
 
 }
